@@ -9,7 +9,7 @@
 
 void Run(HMODULE hModule)
 {
-	//il2cppi_new_console();
+	il2cppi_new_console();
 	
 	while (!GetModuleHandleA(xorstr("GameAssembly.dll")) && !FindWindowA(xorstr("UnityWndClass"), nullptr))
 	{
@@ -18,11 +18,11 @@ void Run(HMODULE hModule)
 	}
 	
 	Utils::SetCurrentPath(Utils::GetModulePath(hModule));
-	ConfigManager::GetInstance().InitializeConfig((Utils::GetCurrentPath() / xorstr("rawdata.json")).string());
+	ConfigManager::GetInstance().InitializeConfig((Utils::GetCurrentPath() / xorstr("config.json")).string());
 	
 	Init(Renderer::DXVersion::D3D11);
 	init_il2cpp();
 	init_cheat();
 
-	LOG(xorstr("Config path is at %s"), (Utils::GetCurrentPath() / xorstr("rawdata.json")).string().c_str());
+	LOG(xorstr("Config path is at %s"), (Utils::GetCurrentPath() / xorstr("config.json")).string().c_str());
 }

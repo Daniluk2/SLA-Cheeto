@@ -42,7 +42,7 @@ void init_cheat()
 	INIT_FEATURE(EntityManager);
 #undef INIT_FEATURE
 
-	HookManager::install(app::GameFrameWork_Update, GameFrameWork_Update_Hook);
+	//HookManager::install(app::GameFrameWork_Update, GameFrameWork_Update_Hook);
 }
 
 void GameFrameWork_Update_Hook(app::GameFrameWork* __this, MethodInfo* method)

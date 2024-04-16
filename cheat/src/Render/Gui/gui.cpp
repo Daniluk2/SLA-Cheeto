@@ -13,7 +13,7 @@ void Gui::Render()
         ImGui::BeginGroup();
         {
             ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(0, 0, 0, 0));
-            GuiUtil::CenterText(xorstr("Key 'Home' On/Off"), 0, 0);
+            GuiUtil::CenterText(xorstr("SLA Cheeto"), 0, 0);
             ImGui::Spacing();
             ImGui::Spacing();
             ImGui::PopStyleColor();

@@ -32,7 +32,7 @@ int main()
 {
 	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
 
-	std::string configPath = "pfs.ini";
+	std::string configPath = "config.ini";
 	if (!std::filesystem::exists(configPath) || !config.Load(configPath.c_str()))
 	{
 		auto gamePathOpt = util::SelectFile("Executable Files (*.exe)\0*.exe\0", "Select the game executable");

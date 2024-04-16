@@ -199,29 +199,22 @@ std::filesystem::path Utils::GetCurrentPath()
 
 std::string Utils::GenerateRandomString(size_t length)
 {
-	const std::vector<std::string> wordDictionary = {
-		"Driver", "Realtek", "Intel", "Nvidia", "Microsoft", "Google", "Amazon", "Apple",
-		"Samsung", "Facebook", "Sony", "HP", "Dell", "Lenovo", "Adobe", "Oracle", "IBM",
-		"Cisco", "Mozilla", "Tesla", "Toyota", "Mercedes", "BMW", "Audi", "Netflix", "PayPal",
-		"Visa", "Mastercard", "Starbucks", "CocaCola", "McDonalds", "BurgerKing", "Subway",
-		"Pepsi", "Sprite", "Fanta", "Lego", "Hasbro", "Mattel", "Disney", "Nintendo", "Xbox",
-		"PlayStation", "WhatsApp", "Instagram", "Twitter", "Snapchat", "TikTok", "Reddit",
-		"LinkedIn", "Skype", "Zoom", "Slack", "Dropbox", "Spotify", "SoundCloud", "Telegram",
-		"Signal", "Wikipedia", "Ebay", "Etsy", "AliExpress", "Walmart", "Target", "BestBuy",
-		"HomeDepot", "Lowes", "IKEA", "Zara", "H&M", "Gucci", "LouisVuitton", "Prada", "Chanel"
+	const std::vector<char> charset = {
+		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+		'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+		'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	};
 
 	std::random_device rd;
 	std::mt19937 generator(rd());
 
-	std::uniform_int_distribution<size_t> distribution(0, wordDictionary.size() - 1);
+	std::uniform_int_distribution<size_t> distribution(0, charset.size() - 1);
 
 	std::string randomString;
 	for (size_t i = 0; i < length; ++i)
-	{
-		const std::string& randomWord = wordDictionary[distribution(generator)];
-		randomString += randomWord;
-	}
+		randomString += charset[distribution(generator)];
 
 	return randomString;
 }
