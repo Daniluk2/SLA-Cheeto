@@ -8,8 +8,9 @@
 #include <string>
 
 #include "appdata/helpers.h"
-#include "magic_enum.hpp"
+#include <magic_enum.hpp>
 #include "cheat/vars.h"
+#include <xorstr.h>
 
 #include "events/event.hpp"
 #include "events/handlers/methodeventhandler.hpp"

@@ -1,41 +1,45 @@
 #include "inject.h"
-
+#include "injector.h"
+#include <fstream>
 #include <iostream>
 #include "util.h"
 
-bool Inject(HANDLE hProcess, const std::string& dllPath)
-{
-	if (GetFileAttributesA(dllPath.c_str()) == INVALID_FILE_ATTRIBUTES)
-	{
+std::vector<char> ReadFileToMemory(const std::string& filePath) {
+	std::ifstream file(filePath, std::ios::binary | std::ios::ate);
+	if (!file.is_open()) {
+		throw std::runtime_error("Failed to open file: " + filePath);
+	}
+
+	size_t fileSize = file.tellg();
+	file.seekg(0, std::ios::beg);
+
+	std::vector<char> buffer(fileSize);
+	file.read(buffer.data(), fileSize);
+	file.close();
+
+	return buffer;
+}
+
+bool Inject(HANDLE hProcess, const std::string& dllPath) {
+	if (GetFileAttributesA(dllPath.c_str()) == INVALID_FILE_ATTRIBUTES) {
 		std::cerr << "DLL file not found: " << dllPath << std::endl;
 		return false;
 	}
 
-	auto pPath = VirtualAllocEx(hProcess, nullptr, dllPath.length() + 1, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
-	if (pPath == nullptr)
-	{
-		std::cerr << "VirtualAllocEx failed: " << util::GetLastErrorAsString() << std::endl;
-		return false;
+	std::vector<char> dllBuffer;
+	try {
+		dllBuffer = ReadFileToMemory(dllPath);
 	}
-	
-	if (!WriteProcessMemory(hProcess, pPath, dllPath.c_str(), dllPath.length() + 1, nullptr)) 
-	{
-		std::cerr << "WriteProcessMemory failed: " << util::GetLastErrorAsString() << std::endl;
-		VirtualFreeEx(hProcess, pPath, 0, MEM_RELEASE);
+	catch (const std::exception& e) {
+		std::cerr << "Failed to read DLL file: " << e.what() << std::endl;
 		return false;
 	}
 
-	auto hThread = CreateRemoteThread(hProcess, nullptr, 0, (LPTHREAD_START_ROUTINE)LoadLibraryA, pPath, 0, nullptr);
-	if (!hThread)
-	{
-		std::cerr << "CreateRemoteThread failed: " << util::GetLastErrorAsString() << std::endl;
-		VirtualFreeEx(hProcess, pPath, 0, MEM_RELEASE);
+	if (!ManualMapDll(hProcess, reinterpret_cast<BYTE*>(dllBuffer.data()), dllBuffer.size(), true, true, false, false, DLL_PROCESS_ATTACH, nullptr)) {
+		std::cerr << "Failed to inject DLL using manual map" << std::endl;
 		return false;
 	}
-
-	WaitForSingleObject(hThread, INFINITE);
-	VirtualFreeEx(hProcess, pPath, 0, MEM_RELEASE);
-	CloseHandle(hThread);
 
 	return true;
 }
+

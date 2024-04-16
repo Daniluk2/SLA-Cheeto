@@ -10,7 +10,7 @@ bool OpenGame(HANDLE* phProcess, HANDLE* phThread)
 {
 	STARTUPINFOA si{};
 	PROCESS_INFORMATION pi{};
-	
+
 	auto procName = config.GamePath.substr(config.GamePath.find_last_of("\\") + 1);
 	auto cmdLine = config.GamePath + " " + config.LaunchOptions;
 
@@ -31,8 +31,8 @@ bool OpenGame(HANDLE* phProcess, HANDLE* phThread)
 int main()
 {
 	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
-	
-	std::string configPath = "config.ini";
+
+	std::string configPath = "pfs.ini";
 	if (!std::filesystem::exists(configPath) || !config.Load(configPath.c_str()))
 	{
 		auto gamePathOpt = util::SelectFile("Executable Files (*.exe)\0*.exe\0", "Select the game executable");
@@ -60,6 +60,7 @@ int main()
 	CoUninitialize();
 
 	HANDLE hProcess, hThread;
+
 	if (!OpenGame(&hProcess, &hThread))
 	{
 		std::cerr << "Failed to open process" << std::endl;
@@ -86,7 +87,7 @@ int main()
 		if (!Inject(hProcess, config.DLLPath_3))
 			std::cerr << "Failed to inject DLL 3" << std::endl;
 	}
-	
+
 	Sleep(3000);
 	ResumeThread(hThread);
 	CloseHandle(hProcess);

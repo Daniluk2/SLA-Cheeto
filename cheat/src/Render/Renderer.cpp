@@ -53,7 +53,7 @@ namespace Renderer
 			gui.Render();
 
 		// TODO: Key Rebind
-		if (Utils::KeyPressed(VK_INSERT))
+		if (Utils::KeyPressed(VK_HOME))
 			gui.Toggle();
 
 		ImGui::EndFrame();

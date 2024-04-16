@@ -369,9 +369,6 @@
     <ClCompile Include="src\appdata\helpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Hotkey.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\appdata\il2cpp-init.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -403,6 +400,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Hotkey.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
