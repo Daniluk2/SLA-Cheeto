@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SimpleIni.h"
+
 #include <string>
 
 class Config
