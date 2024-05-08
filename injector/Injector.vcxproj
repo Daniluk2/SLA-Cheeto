@@ -33,7 +33,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
       <ModuleDependenciesFile>x64\Release\</ModuleDependenciesFile>
@@ -82,8 +82,9 @@
       <AdditionalIncludeDirectories>D:\Git\SLA-Cheeto\src\vendor\imgui\;D:\Git\SLA-Cheeto\Injector\vendor\simpleini;D:\Git\Akebi-PacketSniffer\vcpkg\installed\x64-windows\include</AdditionalIncludeDirectories>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
-    <ClCompile Include="src\injector.cpp" />
+    <ClCompile Include="src\load-library.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\manual-map.cpp" />
     <ClCompile Include="src\util.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>
       <AssemblerListingLocation>x64\Release\</AssemblerListingLocation>
@@ -110,7 +111,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <MinimalRebuild>false</MinimalRebuild>
       <ModuleDependenciesFile>x64\Release\</ModuleDependenciesFile>
@@ -163,7 +164,8 @@
   <ItemGroup>
     <ClInclude Include="src\config.hpp" />
     <ClInclude Include="src\inject.h" />
-    <ClInclude Include="src\injector.h" />
+    <ClInclude Include="src\load-library.h" />
+    <ClInclude Include="src\manual-map.h" />
     <ClInclude Include="src\util.h" />
     <ClInclude Include="vendor\simpleini\SimpleIni.h" />
   </ItemGroup>
@@ -172,13 +174,13 @@
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{3e8902d1-1959-46b1-8d60-59d2d9a64139}</ProjectGuid>
     <RootNamespace>Injector</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -203,7 +205,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)src\vendor\imgui\;$(ProjectDir)vendor\simpleini</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>

@@ -258,7 +258,7 @@ static short InputToLegacy(ImGuiKey inputkey)
 		return VK_XBUTTON2;
 	}
 
-	LOG("Failed to find legacy input");
+	LOG(xorstr("Failed to find legacy input"));
 	return -1;
 }
 
@@ -397,7 +397,7 @@ bool Hotkey::operator==(const Hotkey& c2) const
 std::string GetKeyName(short key)
 {
     if (key > 5)
-        return ImGui::GetKeyName(key);
+		return ImGui::GetKeyName(key);
     
     switch (key)
     {
@@ -521,28 +521,142 @@ std::string Trim(const std::string& str)
 	return str.substr(first, (last - first + 1));
 }
 
-std::string ToLower(const std::string& str) {
-	std::string result = str;
-	std::transform(result.begin(), result.end(), result.begin(), [](unsigned char c) { return std::tolower(c); });
-	return result;
-}
+// Temporary. IDK why magic_enum::enum_cast is returning 0
+ImGuiKey StringToImGuiKey_1(const std::string& keyName)
+{
+	static std::unordered_map<std::string, ImGuiKey> keyMap =
+	{
+		{ "ImGuiKey_Tab", ImGuiKey_Tab },
+		{ "ImGuiKey_LeftArrow", ImGuiKey_LeftArrow },
+		{ "ImGuiKey_RightArrow", ImGuiKey_RightArrow },
+		{ "ImGuiKey_UpArrow", ImGuiKey_UpArrow },
+		{ "ImGuiKey_DownArrow", ImGuiKey_DownArrow },
+		{ "ImGuiKey_PageUp", ImGuiKey_PageUp },
+		{ "ImGuiKey_PageDown", ImGuiKey_PageDown },
+		{ "ImGuiKey_Home", ImGuiKey_Home },
+		{ "ImGuiKey_End", ImGuiKey_End },
+		{ "ImGuiKey_Insert", ImGuiKey_Insert },
+		{ "ImGuiKey_Delete", ImGuiKey_Delete },
+		{ "ImGuiKey_Backspace", ImGuiKey_Backspace },
+		{ "ImGuiKey_Space", ImGuiKey_Space },
+		{ "ImGuiKey_Enter", ImGuiKey_Enter },
+		{ "ImGuiKey_Escape", ImGuiKey_Escape },
+		{ "ImGuiKey_Apostrophe", ImGuiKey_Apostrophe },
+		{ "ImGuiKey_Comma", ImGuiKey_Comma },
+		{ "ImGuiKey_Minus", ImGuiKey_Minus },
+		{ "ImGuiKey_Period", ImGuiKey_Period },
+		{ "ImGuiKey_Slash", ImGuiKey_Slash },
+		{ "ImGuiKey_Semicolon", ImGuiKey_Semicolon },
+		{ "ImGuiKey_Equal", ImGuiKey_Equal },
+		{ "ImGuiKey_LeftBracket", ImGuiKey_LeftBracket },
+		{ "ImGuiKey_Backslash", ImGuiKey_Backslash },
+		{ "ImGuiKey_RightBracket", ImGuiKey_RightBracket },
+		{ "ImGuiKey_GraveAccent", ImGuiKey_GraveAccent },
+		{ "ImGuiKey_CapsLock", ImGuiKey_CapsLock },
+		{ "ImGuiKey_ScrollLock", ImGuiKey_ScrollLock },
+		{ "ImGuiKey_NumLock", ImGuiKey_NumLock },
+		{ "ImGuiKey_PrintScreen", ImGuiKey_PrintScreen },
+		{ "ImGuiKey_Pause", ImGuiKey_Pause },
+		{ "ImGuiKey_Keypad0", ImGuiKey_Keypad0 },
+		{ "ImGuiKey_Keypad1", ImGuiKey_Keypad1 },
+		{ "ImGuiKey_Keypad2", ImGuiKey_Keypad2 },
+		{ "ImGuiKey_Keypad3", ImGuiKey_Keypad3 },
+		{ "ImGuiKey_Keypad4", ImGuiKey_Keypad4 },
+		{ "ImGuiKey_Keypad5", ImGuiKey_Keypad5 },
+		{ "ImGuiKey_Keypad6", ImGuiKey_Keypad6 },
+		{ "ImGuiKey_Keypad7", ImGuiKey_Keypad7 },
+		{ "ImGuiKey_Keypad8", ImGuiKey_Keypad8 },
+		{ "ImGuiKey_Keypad9", ImGuiKey_Keypad9 },
+		{ "ImGuiKey_KeypadDecimal", ImGuiKey_KeypadDecimal },
+		{ "ImGuiKey_KeypadDivide", ImGuiKey_KeypadDivide },
+		{ "ImGuiKey_KeypadMultiply", ImGuiKey_KeypadMultiply },
+		{ "ImGuiKey_KeypadSubtract", ImGuiKey_KeypadSubtract },
+		{ "ImGuiKey_KeypadAdd", ImGuiKey_KeypadAdd },
+		{ "ImGuiKey_KeypadEnter", ImGuiKey_KeypadEnter },
+		{ "ImGuiKey_LeftShift", ImGuiKey_LeftShift },
+		{ "ImGuiKey_LeftCtrl", ImGuiKey_LeftCtrl },
+		{ "ImGuiKey_LeftAlt", ImGuiKey_LeftAlt },
+		{ "ImGuiKey_LeftSuper", ImGuiKey_LeftSuper },
+		{ "ImGuiKey_RightShift", ImGuiKey_RightShift },
+		{ "ImGuiKey_RightCtrl", ImGuiKey_RightCtrl },
+		{ "ImGuiKey_RightAlt", ImGuiKey_RightAlt },
+		{ "ImGuiKey_RightSuper", ImGuiKey_RightSuper },
+		{ "ImGuiKey_Menu", ImGuiKey_Menu },
+		{ "ImGuiKey_0", ImGuiKey_0 },
+		{ "ImGuiKey_1", ImGuiKey_1 },
+		{ "ImGuiKey_2", ImGuiKey_2 },
+		{ "ImGuiKey_3", ImGuiKey_3 },
+		{ "ImGuiKey_4", ImGuiKey_4 },
+		{ "ImGuiKey_5", ImGuiKey_5 },
+		{ "ImGuiKey_6", ImGuiKey_6 },
+		{ "ImGuiKey_7", ImGuiKey_7 },
+		{ "ImGuiKey_8", ImGuiKey_8 },
+		{ "ImGuiKey_9", ImGuiKey_9 },
+		{ "ImGuiKey_A", ImGuiKey_A },
+		{ "ImGuiKey_B", ImGuiKey_B },
+		{ "ImGuiKey_C", ImGuiKey_C },
+		{ "ImGuiKey_D", ImGuiKey_D },
+		{ "ImGuiKey_E", ImGuiKey_E },
+		{ "ImGuiKey_F", ImGuiKey_F },
+		{ "ImGuiKey_G", ImGuiKey_G },
+		{ "ImGuiKey_H", ImGuiKey_H },
+		{ "ImGuiKey_I", ImGuiKey_I },
+		{ "ImGuiKey_J", ImGuiKey_J },
+		{ "ImGuiKey_K", ImGuiKey_K },
+		{ "ImGuiKey_L", ImGuiKey_L },
+		{ "ImGuiKey_M", ImGuiKey_M },
+		{ "ImGuiKey_N", ImGuiKey_N },
+		{ "ImGuiKey_O", ImGuiKey_O },
+		{ "ImGuiKey_P", ImGuiKey_P },
+		{ "ImGuiKey_Q", ImGuiKey_Q },
+		{ "ImGuiKey_R", ImGuiKey_R },
+		{ "ImGuiKey_S", ImGuiKey_S },
+		{ "ImGuiKey_T", ImGuiKey_T },
+		{ "ImGuiKey_U", ImGuiKey_U },
+		{ "ImGuiKey_V", ImGuiKey_V },
+		{ "ImGuiKey_W", ImGuiKey_W },
+		{ "ImGuiKey_X", ImGuiKey_X },
+		{ "ImGuiKey_Y", ImGuiKey_Y },
+		{ "ImGuiKey_Z", ImGuiKey_Z },
+		{ "ImGuiKey_F1", ImGuiKey_F1 },
+		{ "ImGuiKey_F2", ImGuiKey_F2 },
+		{ "ImGuiKey_F3", ImGuiKey_F3 },
+		{ "ImGuiKey_F4", ImGuiKey_F4 },
+		{ "ImGuiKey_F5", ImGuiKey_F5 },
+		{ "ImGuiKey_F6", ImGuiKey_F6 },
+		{ "ImGuiKey_F7", ImGuiKey_F7 },
+		{ "ImGuiKey_F8", ImGuiKey_F8 },
+		{ "ImGuiKey_F9", ImGuiKey_F9 },
+		{ "ImGuiKey_F10", ImGuiKey_F10 },
+		{ "ImGuiKey_F11", ImGuiKey_F11 },
+		{ "ImGuiKey_F12", ImGuiKey_F12 },
+		{ "ImGuiMouseButton_Left", ImGuiMouseButton_Left },
+		{ "ImGuiMouseButton_Right", ImGuiMouseButton_Right },
+		{ "ImGuiMouseButton_Middle", ImGuiMouseButton_Middle },
+	};
 
-ImGuiKey_ StringToImGuiKey(const std::string& keyName) {
-	std::string lowercaseKeyName = ToLower(keyName);
-
-	for (int i = 0; i < ImGuiKey_COUNT; ++i) {
-		std::string enumName = "ImGuiKey_" + std::to_string(i);
-		if (ToLower(enumName) == lowercaseKeyName) {
-			return static_cast<ImGuiKey_>(i);
-		}
-	}
+	auto it = keyMap.find(keyName);
+	if (it != keyMap.end())
+		return it->second;
 
 	return ImGuiKey_None;
 }
 
+ImGuiKey StringToImGuiKey(const std::string& keyName)
+{
+	LOG(xorstr("StringToImGuiKey: %s"), keyName.c_str());
+	auto keyEnum = magic_enum::enum_cast<ImGuiKey_>(keyName);
+	auto ret = keyEnum.has_value() ? keyEnum.value() : ImGuiKey_None;
+	LOG(xorstr("StringToImGuiKey ret: %s"), magic_enum::enum_name(ret).data());
+	return ret;
+}
 
 Hotkey Hotkey::FromString(const std::string& hotkeyString)
 {
+	//LOG(xorstr("Hotkey::FromString: %s"), hotkeyString.c_str());
+	if (hotkeyString == "None")
+		return Hotkey();
+
 	Hotkey hotkey;
 	std::istringstream stream(hotkeyString);
 	std::string keyName;
@@ -550,14 +664,21 @@ Hotkey Hotkey::FromString(const std::string& hotkeyString)
 	while (std::getline(stream, keyName, '+'))
 	{
 		std::string trimmedKey = Trim(keyName);
-		ImGuiKey imguiKey = StringToImGuiKey(trimmedKey);
-		if (imguiKey != ImGuiKey_None)
-		{
-			short legacyKey = ImGuiKeyToLegacy(imguiKey);
-			if (legacyKey != -1)
-				hotkey.m_Keys.insert(legacyKey);
-		}
+		trimmedKey = (trimmedKey.find("ImGuiKey_") == std::string::npos) ? "ImGuiKey_" + trimmedKey : trimmedKey;
+		ImGuiKey imguiKey = StringToImGuiKey_1(trimmedKey);
+		short legacyKey = ImGuiKeyToLegacy(imguiKey);
+
+		//LOG("Parsed key: %s, ImGuiKey: %d, LegacyKey: %d", trimmedKey.c_str(), imguiKey, legacyKey);
+
+		if (legacyKey != -1)
+			hotkey.m_Keys.insert(legacyKey);
 	}
+
+	//if (hotkey.IsEmpty())
+	//	LOG("Hotkey parsed is empty.");
+	//else
+	//	LOG("Hotkey parsed successfully: %s", hotkey.ToString().c_str());
+
 	return hotkey;
 }
 

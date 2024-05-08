@@ -24,7 +24,10 @@
     <ClCompile Include="src\util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\injector.cpp">
+    <ClCompile Include="src\load-library.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\manual-map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,7 +44,10 @@
     <ClInclude Include="src\util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\injector.h">
+    <ClInclude Include="src\load-library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\manual-map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

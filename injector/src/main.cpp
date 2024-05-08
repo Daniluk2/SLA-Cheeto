@@ -10,7 +10,7 @@ bool OpenGame(HANDLE* phProcess, HANDLE* phThread)
 {
 	STARTUPINFOA si{};
 	PROCESS_INFORMATION pi{};
-
+	
 	auto procName = config.GamePath.substr(config.GamePath.find_last_of("\\") + 1);
 	auto cmdLine = config.GamePath + " " + config.LaunchOptions;
 
@@ -31,7 +31,7 @@ bool OpenGame(HANDLE* phProcess, HANDLE* phThread)
 int main()
 {
 	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
-
+	
 	std::string configPath = "config.ini";
 	if (!std::filesystem::exists(configPath) || !config.Load(configPath.c_str()))
 	{
@@ -60,7 +60,6 @@ int main()
 	CoUninitialize();
 
 	HANDLE hProcess, hThread;
-
 	if (!OpenGame(&hProcess, &hThread))
 	{
 		std::cerr << "Failed to open process" << std::endl;
@@ -72,22 +71,31 @@ int main()
 	{
 		auto shuffledPath = util::ShuffleDllName(config.DLLPath_1);
 		std::cout << "Shuffled DLL 1 path: " << shuffledPath << std::endl;
-		if (!Inject(hProcess, config.DLLPath_1))
-			std::cerr << "Failed to inject DLL 1" << std::endl;
+#ifdef USE_MANUAL_MAP
+		Inject(hProcess, config.DLLPath_1, InjectionType::ManualMap);
+#else
+		Inject(hProcess, config.DLLPath_1);
+#endif
 	}
 
 	if (!config.DLLPath_2.empty())
 	{
-		if (!Inject(hProcess, config.DLLPath_2))
-			std::cerr << "Failed to inject DLL 2" << std::endl;
+#ifdef USE_MANUAL_MAP
+		Inject(hProcess, config.DLLPath_2, InjectionType::ManualMap);
+#else
+		Inject(hProcess, config.DLLPath_2);
+#endif
 	}
 
 	if (!config.DLLPath_3.empty())
 	{
-		if (!Inject(hProcess, config.DLLPath_3))
-			std::cerr << "Failed to inject DLL 3" << std::endl;
+#ifdef USE_MANUAL_MAP
+		Inject(hProcess, config.DLLPath_3, InjectionType::ManualMap);
+#else
+		Inject(hProcess, config.DLLPath_3);
+#endif
 	}
-
+	
 	Sleep(3000);
 	ResumeThread(hThread);
 	CloseHandle(hProcess);

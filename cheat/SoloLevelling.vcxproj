@@ -11,14 +11,14 @@
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{41503935-0cd8-44f5-bd2c-3a4f46e0d197}</ProjectGuid>
     <RootNamespace>SoloLevelling</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>SoloLevelling</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -36,7 +36,7 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>SLA_Cheeto</TargetName>
-    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\</OutDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -49,8 +49,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)src\;$(ProjectDir)vendor\xor\include\;$(ProjectDir)vendor\CommandMenu\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\magic_enum\include\magic_enum;$(ProjectDir)vendor\json\single_include\nlohmann</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\;$(ProjectDir)vendor\CommandMenu\include\;$(ProjectDir)vendor\imgui\;$(ProjectDir)vendor\detours\;$(ProjectDir)vendor\magic_enum\include\magic_enum;$(ProjectDir)vendor\json\single_include\nlohmann;$(ProjectDir)vendor\xorstr;$(ProjectDir)vendor\UnityResolve</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -121,9 +121,12 @@
     <ClInclude Include="src\global.h" />
     <ClInclude Include="src\HookManager.h" />
     <ClInclude Include="src\Hotkey.h" />
-    <ClInclude Include="src\HotkeyManager.h" />
+    <ClInclude Include="src\HotkeyManager.hpp" />
     <ClInclude Include="src\main.h" />
     <ClInclude Include="src\Memory.h" />
+    <ClInclude Include="src\methods\Assembly-CSharp.hpp" />
+    <ClInclude Include="src\methods\mscorlib.hpp" />
+    <ClInclude Include="src\methods\UnityEngine.CoreModule.hpp" />
     <ClInclude Include="src\Module.h" />
     <ClInclude Include="src\ModuleManager.h" />
     <ClInclude Include="src\Render\Backend\DX11Hook.h" />
@@ -156,6 +159,7 @@
     <ClInclude Include="vendor\magic_enum\include\magic_enum\magic_enum_iostream.hpp" />
     <ClInclude Include="vendor\magic_enum\include\magic_enum\magic_enum_switch.hpp" />
     <ClInclude Include="vendor\magic_enum\include\magic_enum\magic_enum_utility.hpp" />
+    <ClInclude Include="vendor\UnityResolve\UnityResolve.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\appdata\helpers.cpp" />

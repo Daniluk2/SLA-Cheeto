@@ -3742,6 +3742,7 @@ namespace app
 		MonitorData* monitor;
 		struct OIAMFLMIEGP__Fields fields;
 	};
+	
 	// new DAICCIIPJPK__Fields
 	struct __declspec(align(8)) KAAIFMKPKAG__Fields
 	{
@@ -5108,104 +5109,36 @@ namespace app
 		struct IFCGLMJJCGF__Fields fields;
 	};
 
-#ifdef _CPLUSPLUS_
-	enum class GJCDBMPKFMB_SceneType__Enum : int32_t {
-		NONE = -1,
-		EMPTY = 0x00000000,
-		INTRO = 0x00000001,
-		TITLE = 0x00000002,
-		PATCH = 0x00000003,
-		LOGIN = 0x00000004,
-		LOBBY = 0x00000005,
-		WORLD = 0x00000006,
-		GAMETEST = 0x00000007,
-		SUBSTART = 0x0000000a,
-		SUBTEAMSTORY = 0x0000000b,
-		SUBTEAMGATE = 0x0000000c,
-		SUBUICOMMON = 0x0000000d,
-		SUBDIALOG = 0x0000000e,
-		SUBGROWTHINVEN = 0x0000000f,
-		SUBMAINJOB = 0x00000010,
-		SUBCOSTUME = 0x00000011,
-		SUBGACHA = 0x00000012,
-		SUBPROFILE = 0x00000013,
-		SUBCOLLECTION = 0x00000014,
-		SUBSHADOWEXTRACTION = 0x00000015,
-		SUBINVENHUNTER = 0x00000016,
-		SUBCOLLECTHUNTER = 0x00000017,
-		SUBCOLLECTSHADOW = 0x00000018,
-		SUBJOBCHANGE = 0x00000019,
-		SUBSQUADPRESET = 0x0000001a,
-		SUBWORLDBOSS = 0x0000001b,
-		SUBGROWTHCRAFT = 0x0000001c,
-		SUBINVENWEAPON = 0x0000001d,
-		SUBEVENTRPS = 0x0000001e,
-		SUB_MAX = 0x0000001f,
-	};
-
-#else
-	enum GJCDBMPKFMB_SceneType__Enum {
-		GJCDBMPKFMB_SceneType__Enum_NONE = -1,
-		GJCDBMPKFMB_SceneType__Enum_EMPTY = 0x00000000,
-		GJCDBMPKFMB_SceneType__Enum_INTRO = 0x00000001,
-		GJCDBMPKFMB_SceneType__Enum_TITLE = 0x00000002,
-		GJCDBMPKFMB_SceneType__Enum_PATCH = 0x00000003,
-		GJCDBMPKFMB_SceneType__Enum_LOGIN = 0x00000004,
-		GJCDBMPKFMB_SceneType__Enum_LOBBY = 0x00000005,
-		GJCDBMPKFMB_SceneType__Enum_WORLD = 0x00000006,
-		GJCDBMPKFMB_SceneType__Enum_GAMETEST = 0x00000007,
-		GJCDBMPKFMB_SceneType__Enum_SUBSTART = 0x0000000a,
-		GJCDBMPKFMB_SceneType__Enum_SUBTEAMSTORY = 0x0000000b,
-		GJCDBMPKFMB_SceneType__Enum_SUBTEAMGATE = 0x0000000c,
-		GJCDBMPKFMB_SceneType__Enum_SUBUICOMMON = 0x0000000d,
-		GJCDBMPKFMB_SceneType__Enum_SUBDIALOG = 0x0000000e,
-		GJCDBMPKFMB_SceneType__Enum_SUBGROWTHINVEN = 0x0000000f,
-		GJCDBMPKFMB_SceneType__Enum_SUBMAINJOB = 0x00000010,
-		GJCDBMPKFMB_SceneType__Enum_SUBCOSTUME = 0x00000011,
-		GJCDBMPKFMB_SceneType__Enum_SUBGACHA = 0x00000012,
-		GJCDBMPKFMB_SceneType__Enum_SUBPROFILE = 0x00000013,
-		GJCDBMPKFMB_SceneType__Enum_SUBCOLLECTION = 0x00000014,
-		GJCDBMPKFMB_SceneType__Enum_SUBSHADOWEXTRACTION = 0x00000015,
-		GJCDBMPKFMB_SceneType__Enum_SUBINVENHUNTER = 0x00000016,
-		GJCDBMPKFMB_SceneType__Enum_SUBCOLLECTHUNTER = 0x00000017,
-		GJCDBMPKFMB_SceneType__Enum_SUBCOLLECTSHADOW = 0x00000018,
-		GJCDBMPKFMB_SceneType__Enum_SUBJOBCHANGE = 0x00000019,
-		GJCDBMPKFMB_SceneType__Enum_SUBSQUADPRESET = 0x0000001a,
-		GJCDBMPKFMB_SceneType__Enum_SUBWORLDBOSS = 0x0000001b,
-		GJCDBMPKFMB_SceneType__Enum_SUBGROWTHCRAFT = 0x0000001c,
-		GJCDBMPKFMB_SceneType__Enum_SUBINVENWEAPON = 0x0000001d,
-		GJCDBMPKFMB_SceneType__Enum_SUBEVENTRPS = 0x0000001e,
-		GJCDBMPKFMB_SceneType__Enum_SUB_MAX = 0x0000001f,
-	};
-#endif
-	struct GameFrameWork__Fields {
+	struct GameFrameWork__Fields
+	{
 		struct MonoBehaviour__Fields _;
 		bool IsQuit;
-		GJCDBMPKFMB_SceneType__Enum SceneMode;
-		struct AudioListener *pkAudioListener;
-		struct Camera *pkMainCamera;
-		struct Camera *pkUICamera;
-		struct Camera *pkSubCamera;
-		struct Canvas *pkSpineCanvas;
-		struct GameObject *pkSpineLetterBox;
-		struct GameObject *pkRootCanvas;
-		struct GameObject *pkEffectRoot;
-		struct GameObject *pkSoundRoot;
-		struct GameObject *pkSpawnPoolsRoot;
-		struct GameObject *pkProjectileRoot;
-		struct Text *pkVersion;
-		struct GameObject *pkBillboardRoot;
-		struct LightingPlanData *defaultLightingPlanData;
-		struct VolumeProfile *volumeFXProfile;
-		struct GameObject *pkScreenUITouchEffect;
-		struct GameObject *pkScreenUILongTouchEffect;
-		struct UITooltip *pkUITooltip;
+		NCMFGLJMIFJ_OFGDNPNIFOJ__Enum SceneMode;
+		struct AudioListener* pkAudioListener;
+		struct Camera* pkMainCamera;
+		struct Camera* pkUICamera;
+		struct Camera* pkSubCamera;
+		struct Canvas* pkSpineCanvas;
+		struct GameObject* pkSpineLetterBox;
+		struct GameObject* pkRootCanvas;
+		struct GameObject* pkEffectRoot;
+		struct GameObject* pkSoundRoot;
+		struct GameObject* pkSpawnPoolsRoot;
+		struct GameObject* pkProjectileRoot;
+		struct Text* pkVersion;
+		struct GameObject* pkBillboardRoot;
+		struct LightingPlanData* defaultLightingPlanData;
+		struct VolumeProfile* volumeFXProfile;
+		struct GameObject* pkScreenUITouchEffect;
+		struct GameObject* pkScreenUILongTouchEffect;
+		struct UITooltip* pkUITooltip;
 		bool m_bIsFocusOut;
 	};
 
-	struct GameFrameWork {
-		struct GameFrameWork__Class *klass;
-		MonitorData *monitor;
+	struct GameFrameWork
+	{
+		struct GameFrameWork__Class* klass;
+		MonitorData* monitor;
 		struct GameFrameWork__Fields fields;
 	};
 
@@ -5223,74 +5156,6 @@ namespace app
 		CompleteBattle = 0x00000009,
 		StageStart = 0x0000000a,
 	};
-	// ========================================================================================
-
-
-	struct EGLGAPIAANF__Enum__VTable {
-		VirtualInvokeData Equals;
-		VirtualInvokeData Finalize;
-		VirtualInvokeData GetHashCode;
-		VirtualInvokeData ToString;
-		VirtualInvokeData CompareTo;
-		VirtualInvokeData ToString_1;
-		VirtualInvokeData GetTypeCode;
-		VirtualInvokeData System_IConvertible_ToBoolean;
-		VirtualInvokeData System_IConvertible_ToChar;
-		VirtualInvokeData System_IConvertible_ToSByte;
-		VirtualInvokeData System_IConvertible_ToByte;
-		VirtualInvokeData System_IConvertible_ToInt16;
-		VirtualInvokeData System_IConvertible_ToUInt16;
-		VirtualInvokeData System_IConvertible_ToInt32;
-		VirtualInvokeData System_IConvertible_ToUInt32;
-		VirtualInvokeData System_IConvertible_ToInt64;
-		VirtualInvokeData System_IConvertible_ToUInt64;
-		VirtualInvokeData System_IConvertible_ToSingle;
-		VirtualInvokeData System_IConvertible_ToDouble;
-		VirtualInvokeData System_IConvertible_ToDecimal;
-		VirtualInvokeData System_IConvertible_ToDateTime;
-		VirtualInvokeData ToString_2;
-		VirtualInvokeData System_IConvertible_ToType;
-	};
-
-	struct EGLGAPIAANF__Enum__Class {
-		Il2CppClass_0 _0;
-		Il2CppRuntimeInterfaceOffsetPair *interfaceOffsets;
-		struct BKBKEGEMPBB__Enum__StaticFields *static_fields;
-		const Il2CppRGCTXData *rgctx_data;
-		Il2CppClass_1 _1;
-		struct EGLGAPIAANF__Enum__VTable vtable;
-	};
-
-	struct EGLGAPIAANF__Enum__Boxed {
-		struct BKBKEGEMPBB__Enum__Class *klass;
-		MonitorData *monitor;
-#if defined(_CPLUSPLUS_)
-		EGLGAPIAANF__Enum value;
-#else
-		int32_t value;
-#endif
-	};
-
-	struct __declspec(align(8)) List_1_JPGHFENPLMH___Fields {
-		struct ECLBMHDCAIP__Array *_items;
-		int32_t _size;
-		int32_t _version;
-		struct Object *_syncRoot;
-	};
-
-	struct List_1_JPGHFENPLMH_ {
-		struct List_1_JPGHFENPLMH___Class *klass;
-		MonitorData *monitor;
-		struct List_1_JPGHFENPLMH___Fields fields;
-	};
-
-	struct ECLBMHDCAIP__Array {
-		struct ECLBMHDCAIP__Array__Class *klass;
-		MonitorData *monitor;
-		Il2CppArrayBounds *bounds;
-		il2cpp_array_size_t max_length;
-		struct ECLBMHDCAIP *vector[32];
-	};
 
 	struct __declspec(align(8)) JIBDAHKJHOG__Fields
 	{
@@ -5306,71 +5171,6 @@ namespace app
 		MonitorData *monitor;
 		struct JIBDAHKJHOG__Fields fields;
 	};
-
-	struct __declspec(align(8)) MEOJHACEIPF__Fields {
-		int16_t NHGKPBNIPJJ;
-		int32_t KHPLPGLAHLB;
-		struct Int64__Array *KONIFPHEGOE;
-		struct Int32__Array *BJFEIFEJCEA;
-	};
-	struct MEOJHACEIPF {
-		struct MEOJHACEIPF__Class *klass;
-		MonitorData *monitor;
-		struct MEOJHACEIPF__Fields fields;
-	};
-
-	struct MEOJHACEIPF__VTable {
-		VirtualInvokeData Equals;
-		VirtualInvokeData Finalize;
-		VirtualInvokeData GetHashCode;
-		VirtualInvokeData ToString;
-	};
-
-	struct MEOJHACEIPF__StaticFields {
-	};
-
-	struct MEOJHACEIPF__Class {
-		Il2CppClass_0 _0;
-		Il2CppRuntimeInterfaceOffsetPair *interfaceOffsets;
-		struct MEOJHACEIPF__StaticFields *static_fields;
-		const Il2CppRGCTXData *rgctx_data;
-		Il2CppClass_1 _1;
-		struct MEOJHACEIPF__VTable vtable;
-	};
-
-	// ================================================================================
-
-	struct __declspec(align(8)) MHKEJMMHEJA__Fields {
-		int32_t DEKOOEFBBHB;
-		struct List_1_PKAMOFEIAMO_ *PEOBADPFJKC;
-		struct List_1_LEECHCNCOFL_ *JMNGNMOOJEB;
-	};
-
-	struct MHKEJMMHEJA {
-		struct MHKEJMMHEJA__Class *klass;
-		MonitorData *monitor;
-		struct MHKEJMMHEJA__Fields fields;
-	};
-
-	struct MHKEJMMHEJA__VTable {
-		VirtualInvokeData Equals;
-		VirtualInvokeData Finalize;
-		VirtualInvokeData GetHashCode;
-		VirtualInvokeData ToString;
-	};
-
-	struct MHKEJMMHEJA__StaticFields {
-	};
-
-	struct MHKEJMMHEJA__Class {
-		Il2CppClass_0 _0;
-		Il2CppRuntimeInterfaceOffsetPair *interfaceOffsets;
-		struct MHKEJMMHEJA__StaticFields *static_fields;
-		const Il2CppRGCTXData *rgctx_data;
-		Il2CppClass_1 _1;
-		struct MHKEJMMHEJA__VTable vtable;
-	};
-	// ================================================================================
 
 	enum class EBuffLargeType__Enum : int32_t
 	{

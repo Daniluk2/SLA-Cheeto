@@ -18,7 +18,7 @@
 
 #define SAFE_BEGIN() __try {
 #define SAFE_ERROR() } __except (EXCEPTION_EXECUTE_HANDLER) { \
-    LOG("Exception 0x%08x.", GetExceptionCode());
+    LOG(xorstr("Exception 0x%08x."), GetExceptionCode());
 
 #define SAFE_END() }
 #define SAFE_EEND() SAFE_ERROR(); SAFE_END();
@@ -293,10 +293,6 @@ uintptr_t il2cppi_get_base_address();
 void il2cppi_new_console();
 void il2cppi_close_console();
 
-
-
-
-
 #if _MSC_VER >= 1920
 std::string il2cppi_to_string(Il2CppString* str);
 std::string il2cppi_to_string(app::String* str);
@@ -304,14 +300,6 @@ app::String* string_to_il2cppi(std::string input);
 app::String* string_to_il2cppi(std::wstring input);
 std::string il2cppi_to_string(app::Vector2 vec);
 std::string il2cppi_to_string(app::Vector3 vec);
-#else
-std::string il2cppi_to_string(Il2CppString* str);
-std::string il2cppi_to_string(app::String* str);
-app::String* string_to_il2cppi(std::string input);
-app::String* string_to_il2cppi(std::wstring input);
-std::string il2cppi_to_string(app::Vector2 vec);
-std::string il2cppi_to_string(app::Vector3 vec);
-
 #endif
 
 // Helper function to check if a metadata usage pointer is initialized

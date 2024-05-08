@@ -7,13 +7,13 @@
 void Gui::Render()
 {
 	auto& vars = Vars::GetInstance();
-
+	
     ImGui::Begin(xorstr("##Taiga74164"), nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
     {
         ImGui::BeginGroup();
         {
             ImGui::PushStyleColor(ImGuiCol_ChildBg, IM_COL32(0, 0, 0, 0));
-            GuiUtil::CenterText(xorstr("SLA Cheeto"), 0, 0);
+            GuiUtil::CenterText(xorstr(Utils::GenerateRandomString(10).c_str()), 0, 0);
             ImGui::Spacing();
             ImGui::Spacing();
             ImGui::PopStyleColor();
@@ -53,15 +53,20 @@ void Gui::Render()
 			ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(2, 2));
 			ImGui::BeginGroup();
 
-			//ImGui::CheckboxFill("Animation Speed", &vars.PlayerSpeed.value());
+			//ImGui::CheckboxFill(xorstr("Animation Speed"), &vars.PlayerSpeed.value());
 			//if (vars.PlayerSpeed.value())
-			//	ImGui::SliderFloat("Speed", &vars.PlayerSpeedValue.value(), 1.0f, 20.0f, "%.1f");
+			//	ImGui::SliderFloat(xorstr("Speed"), &vars.PlayerSpeedValue.value(), 1.0f, 20.0f, "%.1f");
 
 			ImGui::CheckboxFill(xorstr("Instant Regen"), &vars.InstantRegen.value()); HELPMAKER(xorstr("Press Run"));
+
 			ImGui::CheckboxFill(xorstr("No Cooldown"), &vars.NoCooldown.value());
+
 			ImGui::CheckboxFill(xorstr("No Cooldown Shadow"), &vars.NoCooldownShadow.value()); HELPMAKER(xorstr("Enable only if you have shadow feature available"));
+
 			ImGui::CheckboxFill(xorstr("God Mode"), &vars.GodMode.value());
+
 			ImGui::CheckboxFill(xorstr("Kill Aura"), &vars.KillAura.value());
+
 			ImGui::CheckboxFill(xorstr("Damage Hack"), &vars.DamageHack.value());
 			if (vars.DamageHack.value())
 				ImGui::SliderInt(xorstr("Value"), &vars.DamageHackValue.value(), 10000, 100000000, "%d");
@@ -93,7 +98,7 @@ void Gui::Render()
 			ImGui::CheckboxFill(xorstr("FPS Unlock"), &vars.FPSUnlock.value());
 			if (vars.FPSUnlock.value())
 				ImGui::SliderInt(xorstr("FPS"), &vars.FPSValue.value(), 5, 360, "%d");
-			
+
 			ImGui::CheckboxFill(xorstr("Fov Changer"), &vars.FovChanger.value());
 			if (vars.FovChanger.value())
 				ImGui::SliderFloat(xorstr("Fov"), &vars.Fov.value(), 1.0f, 360.0f, "%.1f");
@@ -106,14 +111,14 @@ void Gui::Render()
 			ImGui::PopStyleVar();
 			break;
 		case 2: // Hotkeys
-			//ImGui::InputHotkey("PlayerSpeed", vars.PlayerSpeed);
+			//ImGui::InputHotkey(xorstr("PlayerSpeed"), vars.PlayerSpeed);
 			ImGui::InputHotkey(xorstr("Instant Regen"), vars.InstantRegen);
 			ImGui::InputHotkey(xorstr("No Cooldown"), vars.NoCooldown);
 			ImGui::InputHotkey(xorstr("No Cooldown Shadow"), vars.NoCooldownShadow);
 			ImGui::InputHotkey(xorstr("God Mode"), vars.GodMode);
 			ImGui::InputHotkey(xorstr("Damage Hack"), vars.DamageHack);
-			//ImGui::InputHotkey("DamagePercentage", vars.DamagePercentage);
-			//ImGui::InputHotkey("DamageFixed",& vars.DamageFixedHotkey, vars.DamageFixed);
+			//ImGui::InputHotkey(xorstr("DamagePercentage"), vars.DamagePercentage);
+			//ImGui::InputHotkey(xorstr("DamageFixed"),& vars.DamageFixedHotkey, vars.DamageFixed);
 			ImGui::InputHotkey(xorstr("Mob Vacuum"), vars.MobVacuum);
 			ImGui::InputHotkey(xorstr("Dumb Enemies"), vars.DumbEnemies);
 			ImGui::InputHotkey(xorstr("Mission Time"), vars.MissionTime);
